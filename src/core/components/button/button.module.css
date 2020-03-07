@@ -1,0 +1,29 @@
+.paper-btn, .button, input[type=button] {
+    border-bottom-left-radius: 15px 255px;
+    border-bottom-right-radius: 225px 15px;
+    border-top-left-radius: 255px 15px;
+    border-top-right-radius: 15px 225px;
+    align-self: center;
+    background: 0 0;
+    color: #41403e;
+    outline: 0;
+    border: solid 2px #41403e;
+    border: 2px solid #41403e;
+    border-top-left-radius: 255px 15px;
+    border-top-right-radius: 15px 225px;
+    border-bottom-right-radius: 225px 15px;
+    border-bottom-left-radius: 15px 255px;
+    font-size: 1rem;
+    padding: .75rem .75rem;
+    cursor: pointer;
+    -webkit-box-shadow: 15px 28px 25px -18px rgba(0,0,0,.2);
+    -moz-box-shadow: 15px 28px 25px -18px rgba(0,0,0,.2);
+    box-shadow: 15px 28px 25px -18px rgba(0,0,0,.2);
+    transition: all .5s ease;
+  }
+  
+  .paper-btn:hover:hover, button:hover:hover, input[type=button]:hover:hover {
+    -webkit-box-shadow: 2px 8px 4px -6px rgba(0,0,0,.3);
+    -moz-box-shadow: 2px 8px 4px -6px rgba(0,0,0,.3);
+    box-shadow: 2px 8px 4px -6px rgba(0,0,0,.3);
+  }
