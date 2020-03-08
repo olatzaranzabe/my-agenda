@@ -1,7 +1,7 @@
-import { bind } from '../../../../utils/bind'
+import { bind } from '../../../utils/bind'
 import styles from './months.module.css'
 import React from 'react'
-import { Todo as TodoModel } from '../../domain/todo'
+
 import { MonthsList } from '../months-list/months-list';
 
 const cx = bind(styles)

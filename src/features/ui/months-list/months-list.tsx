@@ -1,14 +1,15 @@
 import React from 'react'
-
+import { Month } from '../../domain/month'
+import { Months } from '../months/months'
 interface Props  {
     month: string
     label: string
-    onChange(value: string): void
+    onClick(value: string): void
   }
   
 
 export const MonthsList: React.FC<{
-    onMonthClick(month: month): void
+    onMonthClick(month: Month): void
 }> = ({ onMonthClick }) => {
 
     var monthNames = [ "January", "February", "March", "April", "May", "June",
@@ -17,7 +18,7 @@ export const MonthsList: React.FC<{
     return (
         <ul>
             {monthNames.map(month => (
-                <Month key={month} onClick={() => onMonthClick(month)} />
+                <Months key={month} onClick={() => onMonthClick(month)} />
             ))}
         </ul>
     )
