@@ -1,0 +1,22 @@
+.input {
+    display: inline-block;
+    padding: 10px;
+    border: none;
+    border-bottom: 3px solid grey;
+    background-color: #ddd9d9;
+}
+.input:focus {
+    border: none;
+    border-bottom: 3px solid blue;
+    outline: none;
+}
+
+.required {
+    font-weight: bold;
+}
+.hidden {
+    display: none;
+}
+.show {
+    display: block;
+}

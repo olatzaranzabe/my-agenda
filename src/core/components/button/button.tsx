@@ -4,6 +4,11 @@ import styles from './button.module.css'
 
 const cx = bind(styles)
 
+interface Props extends React.HTMLProps<HTMLButtonElement> {
+    submit?: boolean
+    className: string
+}
+
 export const Button: React.FC<Props> = ({
     children,
     className,

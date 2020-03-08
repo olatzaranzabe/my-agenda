@@ -7,4 +7,4 @@ export default {
 }
 
 export const primary = () => <Button className="paper-btn">Click aquí</Button>
-export const secondary = () => <Button>Click aquí</Button>
+export const secondary = () => <Button className="paper-btn">Click aquí</Button>
