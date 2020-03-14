@@ -28,7 +28,7 @@ interface Props  {
             />
             <span
             className={cx('hidden', {show: value.length === 0 })}
-            >Campo requerido</span>
+            ></span>
           </label>
         
 

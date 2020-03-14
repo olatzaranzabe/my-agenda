@@ -16,10 +16,9 @@ const WithState: React.FC<{ isRequired: boolean }> = ({ isRequired }) => {
         label="My input"
         onChange={setValue}
       ></PasswordInput>
-      State:{value}
+
     </>
   )
 }
 
-export const base = () => <WithState isRequired={false} />
-export const required = () => <WithState isRequired={true} />
+export const passwordInput = () => <WithState isRequired={true} />

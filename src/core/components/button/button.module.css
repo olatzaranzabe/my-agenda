@@ -1,4 +1,4 @@
-.paper-btn, .button, input[type=button] {
+.button {
     border-bottom-left-radius: 15px 255px;
     border-bottom-right-radius: 225px 15px;
     border-top-left-radius: 255px 15px;
@@ -17,14 +17,10 @@
     padding: .75rem .75rem;
     margin: 1rem;
     cursor: pointer;
-    -webkit-box-shadow: 15px 28px 25px -18px rgba(0,0,0,.2);
-    -moz-box-shadow: 15px 28px 25px -18px rgba(0,0,0,.2);
     box-shadow: 15px 28px 25px -18px rgba(0,0,0,.2);
     transition: all .5s ease;
   }
   
-  .paper-btn:hover:hover, button:hover:hover, input[type=button]:hover:hover {
-    -webkit-box-shadow: 2px 8px 4px -6px rgba(0,0,0,.3);
-    -moz-box-shadow: 2px 8px 4px -6px rgba(0,0,0,.3);
+  .button:hover:hover {
     box-shadow: 2px 8px 4px -6px rgba(0,0,0,.3);
   }

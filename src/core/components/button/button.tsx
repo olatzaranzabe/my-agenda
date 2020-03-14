@@ -4,19 +4,17 @@ import styles from './button.module.css'
 
 const cx = bind(styles)
 
-interface Props extends React.HTMLProps<HTMLButtonElement> {
+interface Props {
     submit?: boolean
-    className: string
 }
 
 export const Button: React.FC<Props> = ({
     children,
-    className,
     submit
 }) => {
     return (
         <button
-            className={cx('button', className)}
+            className={cx('button', 'paper-btn')}
             type={submit ? 'submit' : 'button'}
         >
             {children}
