@@ -4,9 +4,15 @@ import styles from './task-input.module.css'
 
 const cx = bind(styles)
 
-export const TaskInput: React.FunctionComponent<{}> = ({ children }) => {
+interface Props  {
+  value: string
+  onChange(value: string): void
+}
+
+export const TaskInput: React.FunctionComponent<Props> = ({ value, onChange }) => {
   return <div className={cx('task')}>
-    <input className={cx('checkbox')} type="checkbox"/>
-    <p>{children}</p>
+    <input className={cx('checkbox')}
+          type="checkbox"/>
+    <input className={cx('task-input')} type="text"  value={value} onChange={event => onChange(event.target.value)}/>
   </div>
 }

@@ -10,3 +10,9 @@
     height: 15px;
     width: 15px;
 }
+.task-input {
+    border: none;
+    width: 80%;
+    height: 20px;
+    font-size: var(--m);
+}
