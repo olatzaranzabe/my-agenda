@@ -12,7 +12,9 @@ interface Props {
 }
 
 export const GetDate: React.FunctionComponent<{}> = ({ children }) => {
-    const today = new Date;
+    let fullDay = new Date();
+
+    let today = String(fullDay.getDate()).padStart(2, '0') + '/' + String(fullDay.getMonth() + 1).padStart(2, '0') + '/' + fullDay.getFullYear();
     const [currentDate, setDate] = useState(today);
   function updateDateIfChanged() {
     const newDate = today;
@@ -28,9 +30,8 @@ export const GetDate: React.FunctionComponent<{}> = ({ children }) => {
   }, []);
    
     return (
-        <GetDate
-            className={cx('date')}>
-            <div value={currentDate}>{children}
+        <GetDate>
+            <div className={cx('date')}>{setDate}
             </div>
         </GetDate>
     )

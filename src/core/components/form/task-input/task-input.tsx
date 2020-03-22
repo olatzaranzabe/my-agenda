@@ -1,18 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { bind } from '../../../../utils/bind'
 import styles from './task-input.module.css'
 
 const cx = bind(styles)
 
-interface Props  {
+interface Props {
   value: string
-  onChange(value: string): void
+  onClick?(): any
+  onChange?(): string
 }
 
-export const TaskInput: React.FunctionComponent<Props> = ({ value, onChange }) => {
-  return <div className={cx('task')}>
-    <input className={cx('checkbox')}
+export const TaskInput: React.FC<Props> = ({ value, onChange, onClick}) => {
+  const [inputValue, setInputValue] = useState<string>("");
+
+  return <div>
+    <form action="">
+      <input className={cx('checkbox')}
           type="checkbox"/>
-    <input className={cx('task-input')} type="text"  value={value} onChange={event => onChange(event.target.value)}/>
+      <input className={cx('task-input')} type="text"  value={inputValue} onChange={event => setInputValue(event.target.value)}/>
+      <button type="submit" onClick={onClick} >Add</button>
+    </form>
   </div>
 }
