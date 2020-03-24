@@ -1,16 +1,16 @@
-import React from 'react'
-import styles from './base-input.module.css'
-import { bind } from '../../../../utils/bind'
+import React from 'react';
+import styles from './base-input.module.css';
+import { bind } from '../../../../utils/bind';
 
-const cx = bind(styles)
+const cx = bind(styles);
 
 interface Props {
-  label: string
-  value: string
-  required?: boolean
-  type: 'text' | 'password'
-  endSlot?: React.ReactNode
-  onChange(value: string): void
+  label: string;
+  value: string;
+  required?: boolean;
+  type: 'text' | 'password';
+  endSlot?: React.ReactNode;
+  onChange(value: string): void;
 }
 
 export const BaseInput: React.FunctionComponent<Props> = ({
@@ -21,7 +21,7 @@ export const BaseInput: React.FunctionComponent<Props> = ({
   type,
   endSlot
 }) => {
-  const isRequired = required && value === ''
+  const isRequired = required && value === '';
   return (
     <label>
       {label}
@@ -34,5 +34,5 @@ export const BaseInput: React.FunctionComponent<Props> = ({
       {isRequired && <span>Required field</span>}
       <div>{endSlot}</div>
     </label>
-  )
-}
+  );
+};

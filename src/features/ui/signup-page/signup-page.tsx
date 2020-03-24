@@ -1,13 +1,14 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
 import { bind } from '../../../utils/bind';
-import styles from './login-page.module.css';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import styles from './signup-page.module.css';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { LoginPage } from '../login-page/login-page';
 import { PasswordInput } from '../../../core/components/form/password-input/password-input';
 import { BaseInput } from '../../../core/components/form/base-input/base-input';
 
 const cx = bind(styles);
 
-interface LoginPage {
+interface SignUpPage {
   value: string;
   setValue: string;
   useState: string;
@@ -15,14 +16,24 @@ interface LoginPage {
   type: string;
 }
 
-export const LoginPage: React.FunctionComponent = ({}) => {
+export const SignUpPage: React.FunctionComponent<{}> = () => {
   const [value, setValue] = useState('');
   const [pasValue, setPasValue] = useState('');
   return (
     <Fragment>
-      <form action="/login" method="POST">
-        <BaseInput></BaseInput>
-        <PasswordInput></PasswordInput>
+      <form action="/signup" method="POST">
+        <BaseInput
+          required={isRequired}
+          value={value}
+          label="My input"
+          onChange={setValue}
+        ></BaseInput>
+        <PasswordInput
+          required={isRequired}
+          value={pasValue}
+          label="My input"
+          onChange={setPasValue}
+        ></PasswordInput>
         <div className={cx('form-group')}>
           <label htmlFor="username">Username</label>
           <input
@@ -46,9 +57,9 @@ export const LoginPage: React.FunctionComponent = ({}) => {
         </button>
       </form>
       <div>
-        <p>¿Aún no tienes cuenta?</p>
-        <Link to="/signup">
-          <p>Crear cuenta</p>
+        <p>¿Ya tienes una cuenta?</p>
+        <Link to="/login">
+          <p>Iniciar sesión</p>
         </Link>
       </div>
     </Fragment>
