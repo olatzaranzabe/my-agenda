@@ -31,7 +31,7 @@ export const BaseInput: React.FunctionComponent<Props> = ({
         value={value}
         type={type}
       />
-      {isRequired && <span>Required field</span>}
+      {isRequired && <span>*</span>}
       <div>{endSlot}</div>
     </label>
   );

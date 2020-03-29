@@ -1,57 +1,41 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { bind } from '../../../utils/bind';
 import styles from './signup-page.module.css';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-import { LoginPage } from '../login-page/login-page';
+import { BrowserRouter as Router, Link, useHistory } from 'react-router-dom';
 import { PasswordInput } from '../../../core/components/form/password-input/password-input';
 import { BaseInput } from '../../../core/components/form/base-input/base-input';
+import { Button } from '../../../core/components/button/button';
 
 const cx = bind(styles);
 
 interface SignUpPage {
-  value: string;
-  setValue: string;
-  useState: string;
   required: boolean;
   type: string;
 }
 
-export const SignUpPage: React.FunctionComponent<{}> = () => {
-  const [value, setValue] = useState('');
+export const SignUpPage: React.FunctionComponent = () => {
+  const [inputValue, setInputValue] = useState('');
   const [pasValue, setPasValue] = useState('');
+
+  const history = useHistory();
   return (
     <Fragment>
       <form action="/signup" method="POST">
         <BaseInput
-          required={isRequired}
-          value={value}
-          label="My input"
-          onChange={setValue}
+          required={true}
+          value={inputValue}
+          label="Usuario"
+          onChange={setInputValue}
+          type={'text'}
         ></BaseInput>
         <PasswordInput
-          required={isRequired}
+          required={true}
           value={pasValue}
-          label="My input"
+          label="Contraseña"
           onChange={setPasValue}
         ></PasswordInput>
-        <div className={cx('form-group')}>
-          <label htmlFor="username">Username</label>
-          <input
-            type="text"
-            className={cx('form-group')}
-            id="username"
-            name="username"
-          />
-        </div>
-        <div className={cx('form-group')}>
-          <label htmlFor="exampleInputPassword1">Password</label>
-          <input
-            type="password"
-            className={cx('form-group')}
-            id="exampleInputPassword1"
-            name="password"
-          />
-        </div>
+        <button onClick={() => history.push('/home')}></button>
+
         <button type="submit" className={cx('btn btn-primary')}>
           Submit
         </button>

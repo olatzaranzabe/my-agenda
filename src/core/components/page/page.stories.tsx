@@ -1,9 +1,9 @@
-import React from 'react'
-import { Page } from './page'
+import React from 'react';
+import { Page } from './page';
 
 export default {
-    title: 'Page',
-    component: Page
-}
+  title: 'Page',
+  component: Page
+};
 
-export const page = () => <Page className="page">Click aquí</Page>
+export const page = () => <Page>Click aquí</Page>;

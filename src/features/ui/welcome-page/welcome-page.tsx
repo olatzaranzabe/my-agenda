@@ -1,9 +1,7 @@
 import React, { Fragment } from 'react';
 import { bind } from '../../../utils/bind';
 import styles from './welcome-page.module.css';
-import { LoginPage } from '../login-page/login-page';
-import { SignUpPage } from '../signup-page/signup-page';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 const cx = bind(styles);
 
 export const WelcomePage: React.FunctionComponent<{}> = () => {
