@@ -5,38 +5,14 @@ import { Task } from './task';
 
 const cx = bind(styles);
 
-const [tasks, setTasks] = useState([
-  {
-    text: '',
-    checked: false
-  },
-  {
-    text: '',
-    checked: false
-  },
-  {
-    text: '',
-    checked: false
-  },
-  {
-    text: '',
-    checked: false
-  },
-  {
-    text: '',
-    checked: false
-  },
-  {
-    text: '',
-    checked: false
-  }
-]);
-
 export const TaskList: React.FunctionComponent = () => {
-  return;
-  <div>
-    {tasks.map((task, index) => (
-      <Task key={index} task={task}></Task>
-    ))}
-  </div>;
+  const range = Array.from({ length: 6 }, (key, value) => value);
+
+  return (
+    <div>
+      {range.map((key, index) => (
+        <Task key={key}></Task>
+      ))}
+    </div>
+  );
 };

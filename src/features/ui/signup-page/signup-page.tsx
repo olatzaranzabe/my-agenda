@@ -18,9 +18,29 @@ export const SignUpPage: React.FunctionComponent = () => {
   const [pasValue, setPasValue] = useState('');
 
   const history = useHistory();
+  const url = 'http://localhost:5000/signup';
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const date = new Date().toISOString();
+    fetch(url, {
+      method: 'POST',
+      headers: new Headers(),
+      body: JSON.stringify({
+        name: '',
+        username: 'x',
+        email: date,
+        password: ''
+      })
+    })
+      .then(res => res.json())
+      .then(data => console.log(data))
+      .catch(err => console.log(err));
+  };
+
   return (
     <Fragment>
-      <form action="/signup" method="POST">
+      <form action="/signup" onSubmit={handleSubmit}>
         <BaseInput
           required={true}
           value={inputValue}
