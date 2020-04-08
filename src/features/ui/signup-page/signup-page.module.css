@@ -1,0 +1,8 @@
+.signup-page {
+  display: flex;
+  justify-content: center;
+}
+.btn {
+  padding: 14px;
+  font-size: var(--subtitle-size);
+}

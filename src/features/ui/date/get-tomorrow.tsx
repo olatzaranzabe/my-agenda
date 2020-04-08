@@ -4,9 +4,8 @@ import styles from './get-date.module.css';
 
 const cx = bind(styles);
 
-export const GetDate: React.FunctionComponent = () => {
-  const [currentDate, setDate] = useState('');
-  const [currentYear, setYear] = useState('');
+export const GetTomorrow: React.FunctionComponent = () => {
+  const [tomorrowDate, setDate] = useState('');
   const [currentMonth, setMonth] = useState('');
 
   const monthNames = [
@@ -25,20 +24,22 @@ export const GetDate: React.FunctionComponent = () => {
   ];
 
   useEffect(() => {
-    const date = new Date().toISOString().slice(8, 10);
-    const year = new Date().toISOString().slice(0, 4);
+    const today = new Date();
+
+    // Sumamos los milisegundos que tiene un dia
+    var tomorrow = new Date(today.getTime() + 24 * 60 * 60 * 1000)
+      .toISOString()
+      .slice(8, 10);
+    setDate(tomorrow);
     const m = new Date();
     const month = monthNames[m.getMonth()];
-    setYear(year);
-    setDate(date);
     setMonth(month);
   }, []);
 
   return (
-    <div className={cx('date-div')}>
-      <p className={cx('date-year')}>Año {currentYear}</p>
+    <div>
       <p className={cx('date')}>
-        <span className={cx('date-number')}>{currentDate}</span> de{' '}
+        <span className={cx('date-number')}>{tomorrowDate}</span> de{' '}
         {currentMonth}
       </p>
     </div>

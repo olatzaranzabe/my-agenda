@@ -1,3 +1,24 @@
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+}
 .link {
   color: #000;
+}
+.login-page {
+  display: flex;
+  justify-content: center;
+}
+.btn {
+  padding: 14px;
+  font-size: var(--subtitle-size);
+}
+.second-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }

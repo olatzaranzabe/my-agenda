@@ -7,11 +7,12 @@ import styles from './home.module.css';
 const cx = bind(styles);
 
 export const Home: React.FunctionComponent = () => {
-  console.log('home');
   return (
     <div className={cx('home')}>
+      <button className={cx('button-prev')}>prev</button>
       <FirstPage />
       <SecondPage />
+      <button className={cx('button-next')}>next</button>
     </div>
   );
 };

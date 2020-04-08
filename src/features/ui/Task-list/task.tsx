@@ -4,36 +4,62 @@ import React, { useState, useEffect } from 'react';
 
 const cx = bind(styles);
 
+interface TaskDto {
+  task: any;
+  date: string;
+  finished: boolean;
+  taskDto: string;
+  username: string;
+  taskList: [];
+  x: string;
+}
 export const Task: React.FunctionComponent = () => {
   const [taskText, setTaskText] = useState<string>('');
   const [checked, setChecked] = useState(false);
-  const handleClick = () => setChecked(!checked);
+  const url = 'http://localhost:5000/home';
 
-  const url = 'http://localhost:5000/';
+  const fetchTasks = async () => {
+    const response = await fetch(url);
+    const result = (await response.json()) as TaskDto;
+    const array = await result.taskList;
+    array.map((x: any) => {
+      return setTaskText(x.task);
+    });
+  };
+
+  useEffect(() => {
+    fetchTasks();
+  }, []);
+
+  const handleClick = () => setChecked(!checked);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!taskText) return;
-    const date = new Date().toISOString();
+
+    const date = new Date().toISOString().slice(0, 10);
+    const info = JSON.stringify({
+      task: taskText,
+      username: 'x',
+      date: date,
+      finished: checked
+    });
     fetch(url, {
       method: 'POST',
-      headers: new Headers(),
-      body: JSON.stringify({
-        task: setTaskText,
-        username: 'x',
-        date: date,
-        finished: setChecked
-      })
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: info
     })
       .then(res => res.json())
-      .then(data => console.log(data))
+      .then(data => console.log('data', data))
       .catch(err => console.log(err));
   };
 
   return (
     <>
       <div>
-        <form action="" onSubmit={handleSubmit}>
+        <form className={cx('task-form')} action="" onSubmit={handleSubmit}>
           <input
             className={cx('checkbox')}
             type="checkbox"
@@ -46,7 +72,9 @@ export const Task: React.FunctionComponent = () => {
             value={taskText}
             onChange={event => setTaskText(event.target.value)}
           />
-          <button type="submit">Add</button>
+          <button className={cx('plus-button')} type="submit">
+            +
+          </button>
         </form>
       </div>
     </>

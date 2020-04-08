@@ -23,7 +23,7 @@ export const BaseInput: React.FunctionComponent<Props> = ({
 }) => {
   const isRequired = required && value === '';
   return (
-    <label>
+    <label className={cx('label')}>
       {label}
       <input
         className={cx('input', { required: isRequired })}

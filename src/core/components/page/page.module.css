@@ -1,9 +1,10 @@
 .page {
-    background-color: #fff;
-    border: 1px solid #c1c0bd;
-    box-shadow: -1px 5px 35px -9px rgba(0,0,0,.2);
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-    padding: 2rem;
-    height: 70vh;
+  background-color: #fff;
+  border: 1px solid #c1c0bd;
+  box-shadow: -1px 5px 35px -9px rgba(0, 0, 0, 0.2);
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  padding: 2rem;
+  height: 80vh;
+  width: 30%;
 }

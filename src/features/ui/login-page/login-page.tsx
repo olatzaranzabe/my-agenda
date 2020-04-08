@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom';
 import { PasswordInput } from '../../../core/components/form/password-input/password-input';
 import { BaseInput } from '../../../core/components/form/base-input/base-input';
+import { Page } from '../../../core/components/page/page';
 
 const cx = bind(styles);
 
@@ -22,35 +23,63 @@ export const LoginPage: React.FunctionComponent = () => {
   const [pasValue, setPasValue] = useState('');
   const history = useHistory();
 
+  const url = 'http://localhost:5000/login';
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const date = new Date().toISOString();
+    const info = JSON.stringify({
+      username: value,
+      password: pasValue
+    });
+    fetch(url, {
+      method: 'POST',
+      body: info
+    })
+      .then(res => res.json())
+      .then(data => console.log(data))
+      .catch(err => console.log(err));
+
+    history.push('/home');
+  };
+
   return (
-    <Fragment>
-      <form action="/login" method="POST" className={cx('form-group')}>
-        <BaseInput
-          required={true}
-          value={value}
-          label="My input"
-          onChange={setValue}
-          type={'text'}
-        ></BaseInput>
-        <PasswordInput
-          required={true}
-          value={pasValue}
-          label="My input"
-          onChange={setPasValue}
-        ></PasswordInput>
-        <button onClick={() => history.push('/home')}></button>
-        <Link to="/home">
-          <button type="submit" className={cx('btn btn-primary')}>
-            Submit
-          </button>
-        </Link>
-      </form>
-      <div>
-        <p>¿Aún no tienes cuenta?</p>
-        <Link to="/signup">
-          <p className={cx('link')}>Crear cuenta</p>
-        </Link>
-      </div>
-    </Fragment>
+    <div className={cx('login-page')}>
+      <Page>
+        <form
+          className={cx('login-form')}
+          action="/home"
+          onSubmit={handleSubmit}
+        >
+          <BaseInput
+            required={true}
+            value={value}
+            label="Usarname"
+            onChange={setValue}
+            type={'text'}
+          ></BaseInput>
+          <PasswordInput
+            required={true}
+            value={pasValue}
+            label="Contraseña"
+            onChange={setPasValue}
+          ></PasswordInput>
+          <Link to="/home">
+            <button type="submit" className={cx('btn')}>
+              Submit
+            </button>
+          </Link>
+        </form>
+      </Page>
+      <Page>
+        <div className={cx('second-page')}>
+          <p>¿Aún no tienes cuenta?</p>
+          <Link to="/signup">
+            <p className={cx('link')}>Crear cuenta</p>
+          </Link>
+        </div>
+      </Page>
+    </div>
   );
 };

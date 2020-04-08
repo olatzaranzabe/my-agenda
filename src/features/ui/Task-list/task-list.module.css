@@ -1,0 +1,21 @@
+.task-form {
+  display: flex;
+  justify-content: center;
+}
+.plus-button {
+  border-radius: 50%;
+  font-size: 20px;
+  border: 2px solid inital;
+  margin: 0.5rem 1rem;
+}
+.task-input {
+  font-size: var(--body-size);
+  width: 70%;
+  height: 25px;
+  border-top: none;
+  border-left: none;
+}
+.checkbox {
+  height: 25px;
+  width: 25px;
+}
