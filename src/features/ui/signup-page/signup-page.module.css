@@ -2,7 +2,33 @@
   display: flex;
   justify-content: center;
 }
-.btn {
-  padding: 14px;
-  font-size: var(--subtitle-size);
+.login-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.login-info p {
+  font-size: var(--title-size);
+  margin: var(--m);
+}
+.btn,
+.login-info a {
+  font-size: var(--title-size);
+  color: inherit;
+  box-shadow: 15px 28px 25px -18px rgba(0, 0, 0, 0.2);
+  transition: all 235ms ease-in-out 0s;
+  align-self: center;
+  background: 0 0;
+  border: 2px solid #41403e;
+  margin: 1rem;
+  padding: var(--m);
+  border-bottom-left-radius: 185px 25px;
+  border-bottom-right-radius: 20px 205px;
+  border-top-left-radius: 125px 25px;
+  border-top-right-radius: 10px 205px;
+  text-decoration: none;
+}
+.hidden {
+  display: none;
 }

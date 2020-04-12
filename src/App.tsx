@@ -27,9 +27,6 @@ function App() {
             <h1>404</h1>
           </Route>
         </Switch>
-        <Link to="/home">
-          <p>Home</p>
-        </Link>
       </Router>
     </div>
   );

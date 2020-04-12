@@ -19,44 +19,62 @@ interface LoginPage {
 }
 
 export const LoginPage: React.FunctionComponent = () => {
-  const [value, setValue] = useState('');
+  const [loggedIn, setLoggedIn] = useState('');
+  const [emailValue, setEmailValue] = useState('');
   const [pasValue, setPasValue] = useState('');
+  const [inputError, setInputError] = useState('');
   const history = useHistory();
 
-  const url = 'http://localhost:5000/login';
+  const url = 'http://localhost:5000/auth/login';
 
+  const handleLogin = () => {};
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (pasValue.length === 0 && emailValue.length === 0) {
+      return setInputError('Parece que faltan los datos');
+    } else if (pasValue.length === 0) {
+      return setInputError('Parece que falta la contraseña');
+    } else if (emailValue.length === 0) {
+      return setInputError('Parece que falta el email');
+    } else {
+      setInputError('');
 
-    const date = new Date().toISOString();
-    const info = JSON.stringify({
-      username: value,
-      password: pasValue
-    });
-    fetch(url, {
-      method: 'POST',
-      body: info
-    })
-      .then(res => res.json())
-      .then(data => console.log(data))
-      .catch(err => console.log(err));
-
-    history.push('/home');
+      const date = new Date().toISOString();
+      const info = JSON.stringify({
+        email: emailValue,
+        password: pasValue
+      });
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: info
+      })
+        .then(res => res.json())
+        .then(data => {
+          //console.log('ii', data.username.username);
+          if (data.username) {
+            sessionStorage.setItem('username', data.username.username);
+            history.push('/home');
+          } else {
+            setInputError('Comprueba los datos introducidos');
+          }
+        })
+        .catch(err => console.log(err));
+    }
   };
 
   return (
     <div className={cx('login-page')}>
       <Page>
-        <form
-          className={cx('login-form')}
-          action="/home"
-          onSubmit={handleSubmit}
-        >
+        <form onSubmit={handleSubmit} className={cx('login-form')}>
           <BaseInput
             required={true}
-            value={value}
-            label="Usarname"
-            onChange={setValue}
+            value={emailValue}
+            label="Email"
+            onChange={setEmailValue}
             type={'text'}
           ></BaseInput>
           <PasswordInput
@@ -65,18 +83,15 @@ export const LoginPage: React.FunctionComponent = () => {
             label="Contraseña"
             onChange={setPasValue}
           ></PasswordInput>
-          <Link to="/home">
-            <button type="submit" className={cx('btn')}>
-              Submit
-            </button>
-          </Link>
+          <p className={cx('error-message')}>{inputError}</p>
+          <button className={cx('btn')}>Submit</button>
         </form>
       </Page>
       <Page>
         <div className={cx('second-page')}>
           <p>¿Aún no tienes cuenta?</p>
-          <Link to="/signup">
-            <p className={cx('link')}>Crear cuenta</p>
+          <Link to="/signup" className={cx('link')}>
+            Crear cuenta
           </Link>
         </div>
       </Page>

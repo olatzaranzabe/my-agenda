@@ -19,33 +19,49 @@ export const SignUpPage: React.FunctionComponent = () => {
   const [inputNameValue, setInputNameValue] = useState('');
   const [inputEmailValue, setInputEmailValue] = useState('');
   const [pasValue, setPasValue] = useState('');
-
+  const [inputError, setInputError] = useState('');
   const history = useHistory();
-  const url = 'http://localhost:5000/signup';
+  const url = 'http://localhost:5000/auth/signup';
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    const date = new Date().toISOString();
-    fetch(url, {
-      method: 'POST',
-      headers: new Headers(),
-      body: JSON.stringify({
-        name: '',
-        username: 'x',
-        email: date,
-        password: pasValue
+    if (
+      inputValue.length === 0 ||
+      inputNameValue.length === 0 ||
+      inputEmailValue.length === 0 ||
+      pasValue.length === 0
+    ) {
+      event.preventDefault();
+      return setInputError(
+        'Debes rellenar todos los campos marcados con una *'
+      );
+    } else {
+      setInputError('');
+      const date = new Date().toISOString();
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: inputNameValue,
+          username: inputValue,
+          email: inputEmailValue,
+          password: pasValue
+        })
       })
-    })
-      .then(res => res.json())
-      .then(data => console.log(data))
-      .catch(err => console.log(err));
+        .then(res => res.json())
+        .then(data => console.log(data))
+        .catch(err => console.log(err));
 
-    history.push('/home');
+      history.push('/login');
+    }
   };
 
   return (
     <div className={cx('signup-page')}>
       <Page>
-        <form action="/signup" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <BaseInput
             required={true}
             value={inputNameValue}
@@ -73,18 +89,14 @@ export const SignUpPage: React.FunctionComponent = () => {
             label="Contraseña"
             onChange={setPasValue}
           ></PasswordInput>
-
-          <button type="submit" className={cx('btn')}>
-            Submit
-          </button>
+          <p>{inputError}</p>
+          <button className={cx('btn')}>Submit</button>
         </form>
       </Page>
       <Page>
-        <div>
+        <div className={cx('login-info')}>
           <p>¿Ya tienes una cuenta?</p>
-          <Link to="/login">
-            <p>Iniciar sesión</p>
-          </Link>
+          <Link to="/login">Iniciar sesión</Link>
         </div>
       </Page>
     </div>

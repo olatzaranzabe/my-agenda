@@ -24,15 +24,15 @@ export const BaseInput: React.FunctionComponent<Props> = ({
   const isRequired = required && value === '';
   return (
     <label className={cx('label')}>
-      {label}
+      <span className={cx('input-label')}>{label}</span>
       <input
         className={cx('input', { required: isRequired })}
         onChange={event => onChange(event.target.value)}
         value={value}
         type={type}
       />
-      {isRequired && <span>*</span>}
-      <div>{endSlot}</div>
+      {required ? '*' : ''}
+      <div className={cx('icon')}>{endSlot}</div>
     </label>
   );
 };

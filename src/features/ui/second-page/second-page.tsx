@@ -4,7 +4,6 @@ import { GetTomorrow } from '../date/get-tomorrow';
 import { TaskList } from '../Task-list/task-list';
 
 export const SecondPage: React.FunctionComponent = () => {
-  console.log('secondpage');
   return (
     <Page>
       <GetTomorrow />

@@ -16,12 +16,13 @@ interface TaskDto {
 export const Task: React.FunctionComponent = () => {
   const [taskText, setTaskText] = useState<string>('');
   const [checked, setChecked] = useState(false);
-  const url = 'http://localhost:5000/home';
+  const url = 'http://localhost:5000/auth/home';
 
   const fetchTasks = async () => {
     const response = await fetch(url);
     const result = (await response.json()) as TaskDto;
     const array = await result.taskList;
+    //console.log(array);
     array.map((x: any) => {
       return setTaskText(x.task);
     });
@@ -39,7 +40,7 @@ export const Task: React.FunctionComponent = () => {
     const date = new Date().toISOString().slice(0, 10);
     const info = JSON.stringify({
       task: taskText,
-      username: 'x',
+      username: sessionStorage.getItem('username'),
       date: date,
       finished: checked
     });

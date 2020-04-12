@@ -7,3 +7,10 @@
   height: 50px;
   margin: auto;
 }
+.button-logout {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  top: 40px;
+  right: 40px;
+}

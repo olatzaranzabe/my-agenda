@@ -1,14 +1,11 @@
-import { bind } from '../../../utils/bind';
 import styles from './task-list.module.css';
 import React, { useState, useEffect } from 'react';
 import { Task } from './task';
 
-const cx = bind(styles);
-
 export const TaskList: React.FunctionComponent = () => {
   const range = Array.from({ length: 8 }, (key, value) => value);
 
-  const url = 'http://localhost:5000/home';
+  const url = 'http://localhost:5000/auth/home';
   const info = useEffect(() => {
     fetch(url)
       .then(res => res.json())
