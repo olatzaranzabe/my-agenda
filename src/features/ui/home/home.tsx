@@ -19,17 +19,7 @@ export const Home: React.FunctionComponent = () => {
     setLogin('logout');
     history.push('/login');
   };
-  // const fetchLogout = async () => {
-  //   const response = await fetch(url);
-  //   const result = await response.json();
-  //   //sessionStorage.removeItem('username');
-  //   history.push('/login');
-  //   console.log(result);
-  // };
 
-  // useEffect(() => {
-  //   fetchLogout();
-  // }, [login]);
   return (
     <div className={cx('home')}>
       <button className={cx('button-prev')}>prev</button>

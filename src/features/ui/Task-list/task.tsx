@@ -4,33 +4,15 @@ import React, { useState, useEffect } from 'react';
 
 const cx = bind(styles);
 
-interface TaskDto {
-  task: any;
-  date: string;
-  finished: boolean;
-  taskDto: string;
-  username: string;
-  taskList: [];
-  x: string;
+interface Props {
+  taskText: string;
+  checked: boolean;
 }
-export const Task: React.FunctionComponent = () => {
-  const [taskText, setTaskText] = useState<string>('');
-  const [checked, setChecked] = useState(false);
+
+export const Task: React.FunctionComponent<Props> = props => {
+  const [taskText, setTaskText] = useState<string>(props.taskText);
+  const [checked, setChecked] = useState(props.checked);
   const url = 'http://localhost:5000/auth/home';
-
-  const fetchTasks = async () => {
-    const response = await fetch(url);
-    const result = (await response.json()) as TaskDto;
-    const array = await result.taskList;
-    //console.log(array);
-    array.map((x: any) => {
-      return setTaskText(x.task);
-    });
-  };
-
-  useEffect(() => {
-    fetchTasks();
-  }, []);
 
   const handleClick = () => setChecked(!checked);
 

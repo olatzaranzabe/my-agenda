@@ -1,22 +1,38 @@
 import styles from './task-list.module.css';
 import React, { useState, useEffect } from 'react';
-import { Task } from './task';
+import { Task as TaskComponent } from './task';
+
+interface Task {
+  task: string;
+  date: string;
+  finished: boolean;
+  username: string;
+  _id: string;
+}
 
 export const TaskList: React.FunctionComponent = () => {
-  const range = Array.from({ length: 8 }, (key, value) => value);
+  const [tasks, setTasks] = useState<Task[]>([]);
 
   const url = 'http://localhost:5000/auth/home';
-  const info = useEffect(() => {
-    fetch(url)
-      .then(res => res.json())
-      .then(data => console.log(data))
-      .catch(err => console.log(err));
+
+  const fetchTasks = async () => {
+    const response = await fetch(url);
+    const result = (await response.json()) as { taskList: Task[] };
+    setTasks(result.taskList);
+  };
+
+  useEffect(() => {
+    fetchTasks();
   }, []);
 
   return (
     <div>
-      {range.map((data, index) => (
-        <Task key={data}>{data}</Task>
+      {tasks.map(task => (
+        <TaskComponent
+          key={task._id}
+          taskText={task.task}
+          checked={task.finished}
+        ></TaskComponent>
       ))}
     </div>
   );

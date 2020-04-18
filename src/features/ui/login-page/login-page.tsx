@@ -84,7 +84,7 @@ export const LoginPage: React.FunctionComponent = () => {
             onChange={setPasValue}
           ></PasswordInput>
           <p className={cx('error-message')}>{inputError}</p>
-          <button className={cx('btn')}>Submit</button>
+          <button className={cx('btn')}>Iniciar sesión</button>
         </form>
       </Page>
       <Page>
