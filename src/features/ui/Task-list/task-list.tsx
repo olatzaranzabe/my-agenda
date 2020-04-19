@@ -10,24 +10,36 @@ interface Task {
   _id: string;
 }
 
-export const TaskList: React.FunctionComponent = () => {
-  const [tasks, setTasks] = useState<Task[]>([]);
+interface Props {
+  tasks: Task[];
+  // taskText: string;
+  // checked: boolean;
+}
 
-  const url = 'http://localhost:5000/auth/home';
+interface Props {}
 
-  const fetchTasks = async () => {
-    const response = await fetch(url);
-    const result = (await response.json()) as { taskList: Task[] };
-    setTasks(result.taskList);
-  };
+export const TaskList: React.FunctionComponent<Props> = props => {
+  console.log(props);
+  const [tasks, setTasks] = useState<Task[]>(props.tasks);
+  console.log(props.tasks);
+  //const tasks = tasks
+  //const [tasks, setTasks] = useState<Task[]>([]);
 
-  useEffect(() => {
-    fetchTasks();
-  }, []);
+  // const url = 'http://localhost:5000/auth/home';
+
+  // const fetchTasks = async () => {
+  //   const response = await fetch(url);
+  //   const result = (await response.json()) as { taskList: Task[] };
+  //   setTasks(result.taskList);
+  // };
+
+  // useEffect(() => {
+  //   fetchTasks();
+  // }, []);
 
   return (
     <div>
-      {tasks.map(task => (
+      {props.tasks.map(task => (
         <TaskComponent
           key={task._id}
           taskText={task.task}

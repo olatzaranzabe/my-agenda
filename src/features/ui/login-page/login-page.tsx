@@ -3,9 +3,9 @@ import { bind } from '../../../utils/bind';
 import styles from './login-page.module.css';
 import {
   BrowserRouter as Router,
-  Route,
   Link,
-  useHistory
+  useHistory,
+  useParams
 } from 'react-router-dom';
 import { PasswordInput } from '../../../core/components/form/password-input/password-input';
 import { BaseInput } from '../../../core/components/form/base-input/base-input';
@@ -57,7 +57,7 @@ export const LoginPage: React.FunctionComponent = () => {
           //console.log('ii', data.username.username);
           if (data.username) {
             sessionStorage.setItem('username', data.username.username);
-            history.push('/home');
+            history.push(`/home:${data.username.username}`);
           } else {
             setInputError('Comprueba los datos introducidos');
           }

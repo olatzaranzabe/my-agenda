@@ -7,9 +7,7 @@ export const SecondPage: React.FunctionComponent = () => {
   return (
     <Page>
       <GetTomorrow />
-      <div>
-        <TaskList />
-      </div>
+      <div>{/* <TaskList /> */}</div>
     </Page>
   );
 };
