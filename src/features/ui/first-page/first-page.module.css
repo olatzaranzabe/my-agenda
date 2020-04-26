@@ -1,0 +1,20 @@
+.date {
+  margin: 1rem 0;
+  font-size: var(--title-size);
+}
+.date-div {
+  position: relative;
+}
+.date-year {
+  position: absolute;
+  top: -34px;
+  left: -22px;
+}
+.date-number {
+  padding: 10px;
+  margin: 10px;
+  border: 2px solid black;
+  border-radius: 10px;
+  color: white;
+  background-color: black;
+}
