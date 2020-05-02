@@ -15,6 +15,7 @@ interface Task {
 
 interface Props {
   tasks: Task[];
+  changeDate: number;
 }
 
 export const SecondPage: React.FunctionComponent<Props> = props => {
@@ -22,7 +23,7 @@ export const SecondPage: React.FunctionComponent<Props> = props => {
   const [currentMonth, setMonth] = useState('');
 
   let a = new Date();
-  a.setDate(a.getDate() + 1);
+  a.setDate(a.getDate() + 1 + props.changeDate);
   const pagedate = a.toISOString().slice(0, 10);
 
   const newList = props.tasks.filter(task => {
@@ -45,10 +46,9 @@ export const SecondPage: React.FunctionComponent<Props> = props => {
 
   useEffect(() => {
     setTomorrowDate(pagedate.slice(8, 10));
-    const m = new Date();
-    const month = monthNames[m.getMonth()];
+    const month = monthNames[a.getMonth()];
     setMonth(month);
-  }, []);
+  });
 
   return (
     <Page>

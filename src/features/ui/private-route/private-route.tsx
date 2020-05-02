@@ -1,9 +1,9 @@
-import React from 'react'
-import { AuthManager } from '../../auth/auth-manager'
-import { Route, Redirect } from 'react-router-dom'
+import React from 'react';
+import { AuthManager } from '../../../features/auth/auth-manager';
+import { Route, Redirect } from 'react-router-dom';
 
 export const PrivateRoute: React.FC = ({ children, ...rest }) => {
-  const authManager = new AuthManager()
+  const authManager = new AuthManager();
 
   return (
     <Route
@@ -14,12 +14,12 @@ export const PrivateRoute: React.FC = ({ children, ...rest }) => {
         ) : (
           <Redirect
             to={{
-              pathname: '/auth/login',
+              pathname: '/login',
               state: { from: location }
             }}
           />
         )
       }
     />
-  )
-}
+  );
+};

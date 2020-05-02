@@ -54,9 +54,9 @@ export const LoginPage: React.FunctionComponent = () => {
       })
         .then(res => res.json())
         .then(data => {
-          //console.log('ii', data.username.username);
           if (data.username) {
             sessionStorage.setItem('username', data.username.username);
+            sessionStorage.setItem('userInfo', data.data.token);
             history.push(`/home:${data.username.username}`);
           } else {
             setInputError('Comprueba los datos introducidos');

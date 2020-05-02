@@ -4,6 +4,7 @@ import { SignUpPage } from './features/ui/signup-page/signup-page';
 import { WelcomePage } from './features/ui/welcome-page/welcome-page';
 import { FirstPage } from './features/ui/first-page/first-page';
 import { Home } from './features/ui/home/home';
+import { PrivateRoute } from './features/ui/private-route/private-route';
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,9 +13,15 @@ import {
   useParams
 } from 'react-router-dom';
 
-//let { username } = useParams;
+export const ProtectedRoute: React.FC = () => {
+  return (
+    <Route path="/home:username" component={Home}>
+      <Home />
+    </Route>
+  );
+};
 
-function App() {
+export const App: React.FC = () => {
   return (
     <div className="App">
       <Router>
@@ -25,9 +32,9 @@ function App() {
           <Route exact path="/signup">
             <SignUpPage />
           </Route>
-          <Route path="/home:username" component={Home}>
-            <Home />
-          </Route>
+          <PrivateRoute>
+            <ProtectedRoute />
+          </PrivateRoute>
           <Route exact path="/">
             <WelcomePage />
           </Route>
@@ -38,6 +45,6 @@ function App() {
       </Router>
     </div>
   );
-}
+};
 
 export default App;

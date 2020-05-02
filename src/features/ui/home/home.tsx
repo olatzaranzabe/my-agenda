@@ -13,6 +13,7 @@ interface Task {
   finished: boolean;
   username: string;
   _id: string;
+  changeDate: number;
 }
 
 export const Home: React.FunctionComponent = () => {
@@ -21,8 +22,8 @@ export const Home: React.FunctionComponent = () => {
   const [login, setLogin] = useState('login');
 
   const handleLogout = async () => {
-    console.log('logout click');
     sessionStorage.removeItem('username');
+    sessionStorage.removeItem('userInfo');
     setLogin('logout');
     history.push('/login');
   };
@@ -30,7 +31,7 @@ export const Home: React.FunctionComponent = () => {
   const urlHome = `http://localhost:5000/auth/home/:${localUsername}`;
 
   const date = parseInt(new Date().toISOString().slice(0, 10));
-
+  const [changeDate, setChangeDate] = useState(0);
   const [tasks, setTasks] = useState<Task[]>([]);
   const fetchTasks = async () => {
     const response = await fetch(urlHome);
@@ -48,12 +49,24 @@ export const Home: React.FunctionComponent = () => {
     fetchTasks();
   }, []);
 
+  const handleClickNext = () => {
+    setChangeDate(changeDate + 1);
+  };
+
+  const handleClickPrev = () => {
+    setChangeDate(changeDate - 1);
+  };
+
   return (
     <div className={cx('home')}>
-      <button className={cx('button-prev')}>prev</button>
-      <FirstPage tasks={tasks} />
-      <SecondPage tasks={tasks} />
-      <button className={cx('button-next')}>next</button>
+      <button onClick={handleClickPrev} className={cx('button-prev')}>
+        prev
+      </button>
+      <FirstPage tasks={tasks} changeDate={changeDate} />
+      <SecondPage tasks={tasks} changeDate={changeDate} />
+      <button onClick={handleClickNext} className={cx('button-next')}>
+        next
+      </button>
       <button onClick={handleLogout} className={cx('button-logout')}>
         Cerrar sesión
       </button>
