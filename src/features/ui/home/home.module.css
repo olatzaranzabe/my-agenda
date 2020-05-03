@@ -6,11 +6,23 @@
 .button-next {
   height: 50px;
   margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button-prev img,
+.button-next img {
+  width: 40px;
 }
 .button-logout {
   width: 60px;
   height: 60px;
   position: absolute;
-  top: 40px;
-  right: 40px;
+  top: 30px;
+  right: 30px;
+}
+
+.button-logout img {
+  width: 20px;
+  height: 20px;
 }

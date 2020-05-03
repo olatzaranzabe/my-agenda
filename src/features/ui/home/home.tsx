@@ -4,6 +4,9 @@ import { FirstPage } from '../first-page/first-page';
 import { SecondPage } from '../second-page/second-page';
 import { bind } from '../../../utils/bind';
 import styles from './home.module.css';
+import logout from '../../../assets/logout.svg';
+import arrowBefore from '../../../assets/arrow-before.svg';
+import arrowNext from '../../../assets/arrow-next.svg';
 
 const cx = bind(styles);
 
@@ -37,11 +40,6 @@ export const Home: React.FunctionComponent = () => {
     const response = await fetch(urlHome);
 
     const result = (await response.json()) as { taskList: Task[] };
-
-    // const newList = await result.taskList.filter(task => {
-    //   return task.date === date;
-    // });
-    // await console.log('newList', newList);
     setTasks(result.taskList);
   };
 
@@ -60,15 +58,15 @@ export const Home: React.FunctionComponent = () => {
   return (
     <div className={cx('home')}>
       <button onClick={handleClickPrev} className={cx('button-prev')}>
-        prev
+        <img src={arrowBefore} alt="previous page" />
       </button>
       <FirstPage tasks={tasks} changeDate={changeDate} />
       <SecondPage tasks={tasks} changeDate={changeDate} />
       <button onClick={handleClickNext} className={cx('button-next')}>
-        next
+        <img src={arrowNext} alt="next page" />
       </button>
       <button onClick={handleLogout} className={cx('button-logout')}>
-        Cerrar sesión
+        <img src={logout} alt="logout icon" />
       </button>
     </div>
   );
