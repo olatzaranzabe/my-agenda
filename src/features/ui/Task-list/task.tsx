@@ -3,51 +3,62 @@ import styles from './task-list.module.css';
 import React, { useState, useEffect } from 'react';
 
 const cx = bind(styles);
-
-interface Props {
+interface TaskModel {
   taskText: string;
   checked: boolean;
   id: string;
   pagedate: any;
 }
+interface Props extends TaskModel {
+  onSubmitTask(): void;
+}
 
-export const Task: React.FunctionComponent<Props> = props => {
-  const [taskText, setTaskText] = useState<string>(props.taskText);
-  const [checked, setChecked] = useState(props.checked);
-  const [id, setId] = useState(props.id);
+export const Task: React.FunctionComponent<Props> = ({
+  taskText,
+  pagedate,
+  onSubmitTask,
+  id,
+  checked
+}) => {
+  const [text, setText] = useState<string>(taskText);
+  const [taskChecked, setTaskChecked] = useState(checked);
+  const [taskId, setTaskId] = useState(id);
 
-  const date = props.pagedate;
-  console.log(date);
+  const date = pagedate;
+
   const url = 'http://localhost:5000/auth/home';
 
-  const handleClick = () => setChecked(!checked);
+  const handleClick = () => setTaskChecked(!taskChecked);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    //event.preventDefault();
-    const info = JSON.stringify({
-      task: taskText,
+    event.preventDefault();
+    const info = {
+      task: text,
       username: sessionStorage.getItem('username'),
       date: date,
-      finished: checked,
-      id: id
-    });
+      finished: taskChecked,
+      id: taskId
+    };
     fetch(url, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
       },
-      body: info
+      body: JSON.stringify(info)
     })
       .then(res => res.json())
-      .then(data => console.log('data', data))
+      .then(data => {
+        onSubmitTask();
+        setText('');
+      })
       .catch(err => console.log(err));
   };
 
   return (
     <>
       <div>
-        <form className={cx('task-form')} action="" onSubmit={handleSubmit}>
+        <form className={cx('task-form')} onSubmit={handleSubmit}>
           <input
             className={cx('checkbox')}
             type="checkbox"
@@ -57,9 +68,9 @@ export const Task: React.FunctionComponent<Props> = props => {
           <input
             className={cx('task-input')}
             type="text"
-            value={taskText}
+            value={text}
             id={id}
-            onChange={event => setTaskText(event.target.value)}
+            onChange={event => setText(event.target.value)}
           />
           <button className={cx('plus-button')} type="submit">
             +

@@ -7,4 +7,5 @@
   padding: 2rem;
   height: 80vh;
   width: 30%;
+  overflow-y: scroll;
 }

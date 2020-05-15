@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
 }
+
 .button-prev,
 .button-next {
   height: 50px;
@@ -9,20 +10,45 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
+
 .button-prev img,
 .button-next img {
-  width: 40px;
+  width: 30px;
 }
-.button-logout {
-  width: 60px;
-  height: 60px;
+
+.buttons-group {
+  display: flex;
+  flex-direction: column;
   position: absolute;
   top: 30px;
   right: 30px;
 }
 
+.button-logout {
+  width: 60px;
+  height: 60px;
+}
+
+.button-calendar {
+  height: 30px;
+  width: 60px;
+  margin-top: 10px;
+}
+
 .button-logout img {
   width: 20px;
   height: 20px;
+}
+
+.calendar {
+  width: 100%;
+  background-color: white;
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }

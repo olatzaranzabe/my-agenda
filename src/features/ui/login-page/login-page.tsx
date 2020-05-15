@@ -69,6 +69,7 @@ export const LoginPage: React.FunctionComponent = () => {
   return (
     <div className={cx('login-page')}>
       <Page>
+        <h2>Iniciar sesión</h2>
         <form onSubmit={handleSubmit} className={cx('login-form')}>
           <BaseInput
             required={true}

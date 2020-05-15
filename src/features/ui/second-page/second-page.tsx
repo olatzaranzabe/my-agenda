@@ -16,14 +16,16 @@ interface Task {
 interface Props {
   tasks: Task[];
   changeDate: number;
+  showDate: any;
+  onSubmitTask(): void;
 }
 
 export const SecondPage: React.FunctionComponent<Props> = props => {
   const [tomorrowDate, setTomorrowDate] = useState('');
   const [currentMonth, setMonth] = useState('');
 
-  let a = new Date();
-  a.setDate(a.getDate() + 1 + props.changeDate);
+  const a = new Date();
+  a.setDate(props.showDate.getDate() + 1 + props.changeDate);
   const pagedate = a.toISOString().slice(0, 10);
 
   const newList = props.tasks.filter(task => {
@@ -44,9 +46,11 @@ export const SecondPage: React.FunctionComponent<Props> = props => {
     'Diciembre'
   ];
 
+  console.log('newlist', newList);
   useEffect(() => {
-    setTomorrowDate(pagedate.slice(8, 10));
-    const month = monthNames[a.getMonth()];
+    const plusOneDay = props.showDate.getTime() + 86400000;
+    const month = monthNames[new Date(plusOneDay).getMonth()];
+    setTomorrowDate(a.toISOString().slice(8, 10));
     setMonth(month);
   });
 
@@ -58,7 +62,11 @@ export const SecondPage: React.FunctionComponent<Props> = props => {
           {currentMonth}
         </p>
       </div>
-      <TaskList tasks={newList} pagedate={pagedate} />
+      <TaskList
+        onSubmitTask={props.onSubmitTask}
+        tasks={newList}
+        pagedate={pagedate}
+      />
     </Page>
   );
 };

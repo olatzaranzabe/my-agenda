@@ -15,34 +15,38 @@ interface Task {
 interface Props {
   tasks: Task[];
   changeDate: number;
+  showDate: any;
+  onSubmitTask(): void;
 }
 
-export const FirstPage: React.FunctionComponent<Props> = props => {
-  // let pagedate;
-  console.log('changedate', props.changeDate);
-  const [tasks, setTasks] = useState<Task[]>(props.tasks);
+export const FirstPage: React.FunctionComponent<Props> = ({
+  tasks,
+  showDate,
+  changeDate,
+  onSubmitTask
+}) => {
+  // const [currentTasks, setCurrentTasks] = useState<Task[]>(tasks);
   const [currentDate, setDate] = useState('');
   const [currentYear, setYear] = useState('');
   const [currentMonth, setMonth] = useState('');
+  const a = new Date();
+  a.setDate(showDate.getDate() + changeDate);
 
-  let a = new Date();
-  a.setDate(a.getDate() + props.changeDate);
   const pagedate = a.toISOString().slice(0, 10);
 
-  const newList = props.tasks.filter(task => {
+  const newList = tasks.filter(task => {
     return task.date === pagedate;
   });
 
   useEffect(() => {
-    const date = a.toISOString().slice(8, 10);
-    const year = a.toISOString().slice(0, 4);
-    const month = monthNames[a.getMonth()];
+    const year = showDate.toISOString().slice(0, 4);
     setYear(year);
-    setDate(date);
+    setDate(pagedate.slice(8, 10));
+    //console.log(pagedate.slice(5, 7));
+    console.log('m', showDate.getMonth());
+    const month = monthNames[showDate.getMonth()];
     setMonth(month);
   });
-
-  console.log('newList', newList);
 
   const monthNames = [
     'Enero',
@@ -68,7 +72,11 @@ export const FirstPage: React.FunctionComponent<Props> = props => {
           {currentMonth}
         </p>
       </div>
-      <TaskList tasks={newList} pagedate={pagedate} />
+      <TaskList
+        onSubmitTask={onSubmitTask}
+        tasks={newList}
+        pagedate={pagedate}
+      />
     </Page>
   );
 };

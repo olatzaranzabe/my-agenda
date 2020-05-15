@@ -39,7 +39,7 @@ export const App: React.FC = () => {
             <WelcomePage />
           </Route>
           <Route>
-            <h1>404</h1>
+            <h1>Error 404</h1>
           </Route>
         </Switch>
       </Router>

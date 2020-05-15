@@ -13,21 +13,29 @@ interface Task {
 interface Props {
   tasks: Task[];
   pagedate: any;
+  onSubmitTask(): void;
 }
 
-export const TaskList: React.FunctionComponent<Props> = props => {
+export const TaskList: React.FunctionComponent<Props> = ({
+  onSubmitTask,
+  pagedate,
+  tasks
+}) => {
   return (
     <div>
-      {props.tasks.map(task => (
+      {tasks.map(task => (
         <TaskComponent
+          onSubmitTask={onSubmitTask}
+          key={task._id}
           id={task._id}
           taskText={task.task}
           checked={task.finished}
-          pagedate={props.pagedate}
+          pagedate={pagedate}
         ></TaskComponent>
       ))}
       <TaskComponent
-        pagedate={props.pagedate}
+        onSubmitTask={onSubmitTask}
+        pagedate={pagedate}
         id={''}
         taskText={''}
         checked={false}
