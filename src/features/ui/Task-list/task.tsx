@@ -28,8 +28,6 @@ export const Task: React.FunctionComponent<Props> = ({
 
   const url = 'http://localhost:5000/auth/home';
 
-  const handleClick = () => setTaskChecked(!taskChecked);
-
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const info = {
@@ -62,8 +60,8 @@ export const Task: React.FunctionComponent<Props> = ({
           <input
             className={cx('checkbox')}
             type="checkbox"
-            onClick={handleClick}
-            checked={checked}
+            onClick={() => setTaskChecked(!taskChecked)}
+            checked={taskChecked}
           />
           <input
             className={cx('task-input')}

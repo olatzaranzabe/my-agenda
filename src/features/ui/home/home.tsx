@@ -8,7 +8,7 @@ import styles from './home.module.css';
 import arrowBefore from '../../../assets/arrow-before.svg';
 import arrowNext from '../../../assets/arrow-next.svg';
 import { LogoutPage } from '../logout-page/logout-page';
-import ApiClient from '../../../infrastructure/api-client';
+// import ApiClient from '../../../infrastructure/api-client';
 import { HomeCalendar } from '../home-calendar/Home-calendar';
 
 const cx = bind(styles);
@@ -23,7 +23,7 @@ interface Task {
 }
 
 export const Home: React.FunctionComponent = () => {
-  console.log('apliclient', ApiClient.taskList);
+  // console.log('apliclient', ApiClient.taskList);
   // const url = 'http://localhost:5000/auth/logout';
   const history = useHistory();
   const [showDate, setShowDate] = useState(new Date());
@@ -61,6 +61,9 @@ export const Home: React.FunctionComponent = () => {
     setChangeDate(0);
     setShowDate(e);
   };
+
+  console.log('home', showDate);
+  console.log('home', changeDate);
 
   return (
     <div className={cx('home')}>

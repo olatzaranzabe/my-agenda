@@ -21,6 +21,7 @@ export const TaskList: React.FunctionComponent<Props> = ({
   pagedate,
   tasks
 }) => {
+  console.log('tasklist', pagedate);
   return (
     <div>
       {tasks.map(task => (

@@ -20,15 +20,28 @@ interface Props {
   onSubmitTask(): void;
 }
 
-export const SecondPage: React.FunctionComponent<Props> = props => {
-  const [tomorrowDate, setTomorrowDate] = useState('');
+export const SecondPage: React.FunctionComponent<Props> = ({
+  changeDate,
+  showDate,
+  tasks,
+  onSubmitTask
+}) => {
+  const [tomorrowDate, setTomorrowDate] = useState(0);
   const [currentMonth, setMonth] = useState('');
+  const a = new Date(showDate);
+  const dateToShow = new Date(a.setDate(showDate.getDate() + 1 + changeDate));
+  a.setDate(showDate.getDate() + 1 + changeDate);
 
-  const a = new Date();
-  a.setDate(props.showDate.getDate() + 1 + props.changeDate);
-  const pagedate = a.toISOString().slice(0, 10);
+  const dateToSave = new Date(a.setDate(showDate.getDate() + 1 + changeDate));
 
-  const newList = props.tasks.filter(task => {
+  // const pagedate = dateToSave.toISOString().slice(0, 10);
+
+  const pagedate =
+    `${dateToSave.getFullYear().toString()}-` +
+    `${(dateToSave.getMonth() + 1).toString()}-` +
+    `${dateToSave.getDate().toString()}`;
+  console.log(pagedate);
+  const newList = tasks.filter(task => {
     return task.date === pagedate;
   });
   const monthNames = [
@@ -48,11 +61,10 @@ export const SecondPage: React.FunctionComponent<Props> = props => {
 
   console.log('newlist', newList);
   useEffect(() => {
-    const plusOneDay = props.showDate.getTime() + 86400000;
-    const month = monthNames[new Date(plusOneDay).getMonth()];
-    setTomorrowDate(a.toISOString().slice(8, 10));
+    const month = monthNames[dateToShow.getMonth()];
+    setTomorrowDate(dateToShow.getDate());
     setMonth(month);
-  });
+  }, [showDate, changeDate]);
 
   return (
     <Page>
@@ -63,7 +75,7 @@ export const SecondPage: React.FunctionComponent<Props> = props => {
         </p>
       </div>
       <TaskList
-        onSubmitTask={props.onSubmitTask}
+        onSubmitTask={onSubmitTask}
         tasks={newList}
         pagedate={pagedate}
       />

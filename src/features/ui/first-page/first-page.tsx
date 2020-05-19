@@ -25,15 +25,34 @@ export const FirstPage: React.FunctionComponent<Props> = ({
   changeDate,
   onSubmitTask
 }) => {
-  // const [currentTasks, setCurrentTasks] = useState<Task[]>(tasks);
-  const [currentDate, setDate] = useState('');
+  const [currentDate, setDate] = useState(0);
   const [currentYear, setYear] = useState('');
   const [currentMonth, setMonth] = useState('');
-  const a = new Date();
-  a.setDate(showDate.getDate() + changeDate);
+  const a = showDate;
 
-  const pagedate = a.toISOString().slice(0, 10);
+  const multiple = changeDate * 86400000;
 
+  const dateToShow = new Date(showDate.getTime() + multiple);
+  const dateToSave = new Date(showDate.getTime() + multiple);
+  console.log('save', dateToSave);
+
+  // const pagedate = dateToSave.toISOString().slice(0, 10);
+
+  // console.log(dateToSave.getFullYear().toString());
+  // console.log(dateToSave.getMonth().toString());
+  // console.log(dateToSave.getDay().toString());
+  // console.log(
+  //   `${dateToSave.getFullYear().toString()}-` +
+  //     `${dateToSave.getMonth().toString()}-` +
+  //     `${dateToSave.getDay().toString()}`
+  // );
+
+  const pagedate =
+    `${dateToSave.getFullYear().toString()}-` +
+    `${(dateToSave.getMonth() + 1).toString()}-` +
+    `${dateToSave.getDate().toString()}`;
+  console.log('ss', dateToSave);
+  console.log('tt', pagedate);
   const newList = tasks.filter(task => {
     return task.date === pagedate;
   });
@@ -41,12 +60,10 @@ export const FirstPage: React.FunctionComponent<Props> = ({
   useEffect(() => {
     const year = showDate.toISOString().slice(0, 4);
     setYear(year);
-    setDate(pagedate.slice(8, 10));
-    //console.log(pagedate.slice(5, 7));
-    console.log('m', showDate.getMonth());
-    const month = monthNames[showDate.getMonth()];
+    setDate(dateToShow.getDate());
+    const month = monthNames[dateToShow.getMonth()];
     setMonth(month);
-  });
+  }, [showDate, changeDate]);
 
   const monthNames = [
     'Enero',
