@@ -10,7 +10,7 @@ import {
 import { PasswordInput } from '../../../core/components/form/password-input/password-input';
 import { BaseInput } from '../../../core/components/form/base-input/base-input';
 import { Page } from '../../../core/components/page/page';
-
+import login from '../../../infrastructure/api-client';
 const cx = bind(styles);
 
 interface LoginPage {
@@ -27,6 +27,7 @@ export const LoginPage: React.FunctionComponent = () => {
 
   const url = 'http://localhost:5000/auth/login';
 
+  console.log(login);
   const handleLogin = () => {};
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

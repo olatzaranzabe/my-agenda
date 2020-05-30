@@ -29,18 +29,14 @@ export const SecondPage: React.FunctionComponent<Props> = ({
   const [tomorrowDate, setTomorrowDate] = useState(0);
   const [currentMonth, setMonth] = useState('');
   const a = new Date(showDate);
-  const dateToShow = new Date(a.setDate(showDate.getDate() + 1 + changeDate));
-  a.setDate(showDate.getDate() + 1 + changeDate);
 
   const dateToSave = new Date(a.setDate(showDate.getDate() + 1 + changeDate));
-
-  // const pagedate = dateToSave.toISOString().slice(0, 10);
 
   const pagedate =
     `${dateToSave.getFullYear().toString()}-` +
     `${(dateToSave.getMonth() + 1).toString()}-` +
     `${dateToSave.getDate().toString()}`;
-  console.log(pagedate);
+
   const newList = tasks.filter(task => {
     return task.date === pagedate;
   });
@@ -59,10 +55,9 @@ export const SecondPage: React.FunctionComponent<Props> = ({
     'Diciembre'
   ];
 
-  console.log('newlist', newList);
   useEffect(() => {
-    const month = monthNames[dateToShow.getMonth()];
-    setTomorrowDate(dateToShow.getDate());
+    const month = monthNames[dateToSave.getMonth()];
+    setTomorrowDate(dateToSave.getDate());
     setMonth(month);
   }, [showDate, changeDate]);
 

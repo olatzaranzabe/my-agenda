@@ -33,26 +33,11 @@ export const FirstPage: React.FunctionComponent<Props> = ({
   const multiple = changeDate * 86400000;
 
   const dateToShow = new Date(showDate.getTime() + multiple);
-  const dateToSave = new Date(showDate.getTime() + multiple);
-  console.log('save', dateToSave);
-
-  // const pagedate = dateToSave.toISOString().slice(0, 10);
-
-  // console.log(dateToSave.getFullYear().toString());
-  // console.log(dateToSave.getMonth().toString());
-  // console.log(dateToSave.getDay().toString());
-  // console.log(
-  //   `${dateToSave.getFullYear().toString()}-` +
-  //     `${dateToSave.getMonth().toString()}-` +
-  //     `${dateToSave.getDay().toString()}`
-  // );
-
   const pagedate =
-    `${dateToSave.getFullYear().toString()}-` +
-    `${(dateToSave.getMonth() + 1).toString()}-` +
-    `${dateToSave.getDate().toString()}`;
-  console.log('ss', dateToSave);
-  console.log('tt', pagedate);
+    `${dateToShow.getFullYear().toString()}-` +
+    `${(dateToShow.getMonth() + 1).toString()}-` +
+    `${dateToShow.getDate().toString()}`;
+
   const newList = tasks.filter(task => {
     return task.date === pagedate;
   });

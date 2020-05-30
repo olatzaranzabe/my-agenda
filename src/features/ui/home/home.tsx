@@ -10,6 +10,7 @@ import arrowNext from '../../../assets/arrow-next.svg';
 import { LogoutPage } from '../logout-page/logout-page';
 // import ApiClient from '../../../infrastructure/api-client';
 import { HomeCalendar } from '../home-calendar/Home-calendar';
+import * as listItems from '../../../infrastructure/list-items-client';
 
 const cx = bind(styles);
 
@@ -28,26 +29,19 @@ export const Home: React.FunctionComponent = () => {
   const history = useHistory();
   const [showDate, setShowDate] = useState(new Date());
   const localUsername = sessionStorage.getItem('username');
-  const urlHome = `http://localhost:5000/auth/home/:${localUsername}`;
+
+  const fetchTasks = async () => {
+    const res = await listItems.getTaskList();
+    await setTasks(res.taskList);
+  };
 
   const date = parseInt(new Date().toISOString().slice(0, 10));
   const [changeDate, setChangeDate] = useState(0);
   const [tasks, setTasks] = useState<Task[]>([]);
-  const fetchTasks = async () => {
-    const response = await fetch(urlHome);
-
-    const result = (await response.json()) as { taskList: Task[] };
-    setTasks(result.taskList);
-  };
 
   useEffect(() => {
     fetchTasks();
   }, []);
-
-  // useEffect(() => {
-  //   const fetchTasks = async () => {};
-  //   fetchTasks();
-  // }, []);
 
   const handleClickNext = () => {
     setChangeDate(changeDate + 1);
@@ -57,14 +51,10 @@ export const Home: React.FunctionComponent = () => {
     setChangeDate(changeDate - 1);
   };
   const checkCalendarDate = (e: any) => {
-    console.log('e', e);
     setChangeDate(0);
     setShowDate(e);
   };
-
-  console.log('home', showDate);
-  console.log('home', changeDate);
-
+  console.log(tasks);
   return (
     <div className={cx('home')}>
       <button onClick={handleClickPrev} className={cx('button-prev')}>
