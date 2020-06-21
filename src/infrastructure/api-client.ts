@@ -5,8 +5,7 @@ const config = {
 };
 
 const httpApi = axios.create({
-  baseURL: 'http://localhost:5000',
-
+  baseURL: 'http://my-agenda-app.herokuapp.com/',
   withCredentials: true
 });
 
@@ -25,5 +24,4 @@ httpApi.interceptors.response.use(
 const logout = () => httpApi.post('/logout');
 const login = () => httpApi.post('auth/login');
 
-console.log(logout);
 export default { logout, login };

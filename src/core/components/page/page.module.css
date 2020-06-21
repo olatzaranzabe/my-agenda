@@ -9,3 +9,12 @@
   width: 30%;
   overflow-y: scroll;
 }
+
+@media (max-width: 1200px) {
+  .page {
+    height: auto;
+    border: none;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}

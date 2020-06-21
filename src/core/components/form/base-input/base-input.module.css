@@ -41,3 +41,9 @@
   right: 50px;
   top: 32px;
 }
+
+@media (max-width: 1200px) {
+  .icon {
+    right: 25px;
+  }
+}

@@ -1,16 +1,10 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import { bind } from '../../../utils/bind';
 import styles from './login-page.module.css';
-import {
-  BrowserRouter as Router,
-  Link,
-  useHistory,
-  useParams
-} from 'react-router-dom';
+import { BrowserRouter as Router, Link, useHistory } from 'react-router-dom';
 import { PasswordInput } from '../../../core/components/form/password-input/password-input';
 import { BaseInput } from '../../../core/components/form/base-input/base-input';
 import { Page } from '../../../core/components/page/page';
-import login from '../../../infrastructure/api-client';
 const cx = bind(styles);
 
 interface LoginPage {
@@ -19,16 +13,13 @@ interface LoginPage {
 }
 
 export const LoginPage: React.FunctionComponent = () => {
-  const [loggedIn, setLoggedIn] = useState('');
   const [emailValue, setEmailValue] = useState('');
   const [pasValue, setPasValue] = useState('');
   const [inputError, setInputError] = useState('');
   const history = useHistory();
 
-  const url = 'http://localhost:5000/auth/login';
+  const url = 'https://my-agenda-app.herokuapp.com/auth/login';
 
-  console.log(login);
-  const handleLogin = () => {};
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (pasValue.length === 0 && emailValue.length === 0) {
@@ -49,7 +40,8 @@ export const LoginPage: React.FunctionComponent = () => {
         method: 'POST',
         headers: {
           Accept: 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
         },
         body: info
       })
@@ -70,7 +62,7 @@ export const LoginPage: React.FunctionComponent = () => {
   return (
     <div className={cx('login-page')}>
       <Page>
-        <h2>Iniciar sesión</h2>
+        <h2 className={cx('login-title')}>Iniciar sesión</h2>
         <form onSubmit={handleSubmit} className={cx('login-form')}>
           <BaseInput
             required={true}

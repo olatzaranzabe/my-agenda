@@ -1,6 +1,6 @@
 import { bind } from '../../../utils/bind';
 import styles from './task-list.module.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const cx = bind(styles);
 interface TaskModel {
@@ -26,7 +26,7 @@ export const Task: React.FunctionComponent<Props> = ({
 
   const date = pagedate;
 
-  const url = 'http://localhost:5000/auth/home';
+  const url = 'https://my-agenda-app.herokuapp.com/auth/home';
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -41,7 +41,8 @@ export const Task: React.FunctionComponent<Props> = ({
       method: 'POST',
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
       },
       body: JSON.stringify(info)
     })

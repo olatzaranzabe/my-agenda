@@ -4,7 +4,6 @@ import styles from './signup-page.module.css';
 import { BrowserRouter as Router, Link, useHistory } from 'react-router-dom';
 import { PasswordInput } from '../../../core/components/form/password-input/password-input';
 import { BaseInput } from '../../../core/components/form/base-input/base-input';
-import { Button } from '../../../core/components/button/button';
 import { Page } from '../../../core/components/page/page';
 
 const cx = bind(styles);
@@ -21,7 +20,7 @@ export const SignUpPage: React.FunctionComponent = () => {
   const [pasValue, setPasValue] = useState('');
   const [inputError, setInputError] = useState('');
   const history = useHistory();
-  const url = 'http://localhost:5000/auth/signup';
+  const url = 'http://my-agenda-app.herokuapp.com/auth/signup';
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     if (
@@ -41,7 +40,8 @@ export const SignUpPage: React.FunctionComponent = () => {
         method: 'POST',
         headers: {
           Accept: 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*'
         },
         body: JSON.stringify({
           name: inputNameValue,
@@ -90,7 +90,7 @@ export const SignUpPage: React.FunctionComponent = () => {
             onChange={setPasValue}
           ></PasswordInput>
           <p>{inputError}</p>
-          <button className={cx('btn')}>Submit</button>
+          <button className={cx('btn')}>Crear Cuenta</button>
         </form>
       </Page>
       <Page>

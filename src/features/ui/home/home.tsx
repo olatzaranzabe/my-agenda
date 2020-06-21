@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import 'react-calendar/dist/Calendar.css';
 import { FirstPage } from '../first-page/first-page';
 import { SecondPage } from '../second-page/second-page';
@@ -8,7 +7,6 @@ import styles from './home.module.css';
 import arrowBefore from '../../../assets/arrow-before.svg';
 import arrowNext from '../../../assets/arrow-next.svg';
 import { LogoutPage } from '../logout-page/logout-page';
-// import ApiClient from '../../../infrastructure/api-client';
 import { HomeCalendar } from '../home-calendar/Home-calendar';
 import * as listItems from '../../../infrastructure/list-items-client';
 
@@ -24,11 +22,8 @@ interface Task {
 }
 
 export const Home: React.FunctionComponent = () => {
-  // console.log('apliclient', ApiClient.taskList);
   // const url = 'http://localhost:5000/auth/logout';
-  const history = useHistory();
   const [showDate, setShowDate] = useState(new Date());
-  const localUsername = sessionStorage.getItem('username');
 
   const fetchTasks = async () => {
     const res = await listItems.getTaskList();
@@ -54,7 +49,6 @@ export const Home: React.FunctionComponent = () => {
     setChangeDate(0);
     setShowDate(e);
   };
-  console.log(tasks);
   return (
     <div className={cx('home')}>
       <button onClick={handleClickPrev} className={cx('button-prev')}>

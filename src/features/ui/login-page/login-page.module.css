@@ -1,7 +1,6 @@
 .login-form {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   height: 100%;
 }
 .link {
@@ -11,6 +10,12 @@
   display: flex;
   justify-content: center;
 }
+
+.login-title {
+  margin: 0 0 1rem;
+  font-size: 2rem;
+}
+
 .btn {
   font-size: var(--title-size);
   color: inherit;
@@ -36,4 +41,11 @@
 }
 .error-message {
   color: red;
+}
+
+@media (max-width: 1200px) {
+  .login-page {
+    flex-direction: column;
+    align-items: center;
+  }
 }

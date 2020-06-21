@@ -2,16 +2,9 @@ import React from 'react';
 import { LoginPage } from './features/ui/login-page/login-page';
 import { SignUpPage } from './features/ui/signup-page/signup-page';
 import { WelcomePage } from './features/ui/welcome-page/welcome-page';
-import { FirstPage } from './features/ui/first-page/first-page';
 import { Home } from './features/ui/home/home';
 import { PrivateRoute } from './features/ui/private-route/private-route';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useParams
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 export const ProtectedRoute: React.FC = () => {
   return (

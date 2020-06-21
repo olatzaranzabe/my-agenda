@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { bind } from '../../../utils/bind';
 import styles from './welcome-page.module.css';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 const cx = bind(styles);
 
 export const WelcomePage: React.FunctionComponent<{}> = () => {

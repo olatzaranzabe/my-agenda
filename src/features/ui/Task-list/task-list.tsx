@@ -1,5 +1,4 @@
-import styles from './task-list.module.css';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Task as TaskComponent } from './task';
 
 interface Task {
@@ -21,7 +20,6 @@ export const TaskList: React.FunctionComponent<Props> = ({
   pagedate,
   tasks
 }) => {
-  console.log('tasklist', pagedate);
   return (
     <div>
       {tasks.map(task => (

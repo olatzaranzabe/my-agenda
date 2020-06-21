@@ -13,16 +13,14 @@ export const LogoutPage: React.FunctionComponent = () => {
   const handleLogout = async () => {
     sessionStorage.removeItem('username');
     sessionStorage.removeItem('userInfo');
-    history.push('/login');
-  };
-
-  const logoutaction = () => {
     console.log('servicios', logout);
 
     logout.logout();
+    history.push('/login');
   };
+
   return (
-    <button onClick={logoutaction} className={cx('button-logout')}>
+    <button onClick={handleLogout} className={cx('button-logout')}>
       <img src={logoutIcon} alt="logout icon" />
     </button>
   );
