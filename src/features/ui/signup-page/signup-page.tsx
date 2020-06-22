@@ -35,7 +35,6 @@ export const SignUpPage: React.FunctionComponent = () => {
       );
     } else {
       setInputError('');
-      const date = new Date().toISOString();
       fetch(url, {
         method: 'POST',
         headers: {
