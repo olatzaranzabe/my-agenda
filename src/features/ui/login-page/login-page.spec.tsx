@@ -40,7 +40,7 @@ export function setup({
     key: jest.fn(),
     length: 10
   };
-  const component = render(<LoginPage storage={storageMock} />);
+  // const component = render(<LoginPage storage={storageMock} />);
 
   return {
     ...component,

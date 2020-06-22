@@ -31,7 +31,6 @@ export const LoginPage: React.FunctionComponent = () => {
     } else {
       setInputError('');
 
-      const date = new Date().toISOString();
       const info = JSON.stringify({
         email: emailValue,
         password: pasValue
