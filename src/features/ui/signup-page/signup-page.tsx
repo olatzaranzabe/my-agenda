@@ -22,6 +22,7 @@ export const SignUpPage: React.FunctionComponent = () => {
   const history = useHistory();
   const url = 'http://my-agenda-app.herokuapp.com/auth/signup';
 
+  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     if (
       inputValue.length === 0 ||
@@ -33,6 +34,9 @@ export const SignUpPage: React.FunctionComponent = () => {
       return setInputError(
         'Debes rellenar todos los campos marcados con una *'
       );
+    } else if (!re.test(String(inputEmailValue).toLowerCase())) {
+      event.preventDefault();
+      return setInputError('El email introducido no es válido');
     } else {
       setInputError('');
       fetch(url, {

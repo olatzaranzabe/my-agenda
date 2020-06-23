@@ -19,6 +19,9 @@ export const App: React.FC = () => {
     <div className="App">
       <Router>
         <Switch>
+          <Route exact path="/">
+            <WelcomePage />
+          </Route>
           <Route exact path="/login">
             <LoginPage />
           </Route>
@@ -28,9 +31,7 @@ export const App: React.FC = () => {
           <PrivateRoute>
             <ProtectedRoute />
           </PrivateRoute>
-          <Route exact path="/">
-            <WelcomePage />
-          </Route>
+
           <Route>
             <h1>Error 404</h1>
           </Route>

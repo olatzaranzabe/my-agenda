@@ -1,8 +1,7 @@
-const localUsername = sessionStorage.getItem('username');
-
-const urlHome = `https://my-agenda-app.herokuapp.com/auth/home/:${localUsername}`;
-
 function client(endpoint, { body, ...customConfig } = {}) {
+  const localUsername = sessionStorage.getItem('username');
+
+  const urlHome = `https://my-agenda-app.herokuapp.com/auth/home/:${localUsername}`;
   const headers = {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*'
@@ -27,6 +26,9 @@ function client(endpoint, { body, ...customConfig } = {}) {
 }
 
 function getTaskList() {
+  const localUsername = sessionStorage.getItem('username');
+
+  const urlHome = `https://my-agenda-app.herokuapp.com/auth/home/:${localUsername}`;
   return client(urlHome, { body: false });
 }
 

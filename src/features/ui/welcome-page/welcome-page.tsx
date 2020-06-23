@@ -14,7 +14,7 @@ export const WelcomePage: React.FunctionComponent<{}> = () => {
           </h1>
           <p>
             Ahorra papel y no te precupes de llevarla siempre encima. Podrás
-            acceder desde cualquier dispositivo las 24 horas del día.
+            acceder las 24 horas del día.
           </p>
         </div>
         <div className={cx('buttons-list')}>
