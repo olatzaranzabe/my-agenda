@@ -1,4 +1,8 @@
-function client(endpoint, { body, ...customConfig } = {}) {
+type Options<T> = RequestInit & {
+  body: T;
+};
+
+export function client<T>(endpoint: string, options?: Options<T>) {
   const localUsername = sessionStorage.getItem('username');
 
   const urlHome = `https://my-agenda-app.herokuapp.com/auth/home/:${localUsername}`;
@@ -7,11 +11,11 @@ function client(endpoint, { body, ...customConfig } = {}) {
     'Access-Control-Allow-Origin': '*'
   };
   const config = {
-    method: body ? 'POST' : 'GET',
-    ...customConfig,
+    method: options?.body ? 'POST' : 'GET',
+    ...options,
     headers: {
       ...headers,
-      ...customConfig.headers
+      ...options?.headers
     }
   };
 
@@ -24,12 +28,3 @@ function client(endpoint, { body, ...customConfig } = {}) {
     }
   });
 }
-
-function getTaskList() {
-  const localUsername = sessionStorage.getItem('username');
-
-  const urlHome = `https://my-agenda-app.herokuapp.com/auth/home/:${localUsername}`;
-  return client(urlHome, { body: false });
-}
-
-export { getTaskList };
