@@ -22,7 +22,6 @@ interface Task {
 }
 
 export const Home: React.FunctionComponent = () => {
-  // const url = 'http://localhost:5000/auth/logout';
   const [showDate, setShowDate] = useState(new Date());
 
   const fetchTasks = async () => {

@@ -50,6 +50,7 @@ export const Task: React.FunctionComponent<Props> = ({
       .then(data => {
         onSubmitTask();
         setText('');
+        setTaskChecked(false);
       })
       .catch(err => console.log(err));
   };
@@ -61,7 +62,7 @@ export const Task: React.FunctionComponent<Props> = ({
           <input
             className={cx('checkbox')}
             type="checkbox"
-            onClick={() => setTaskChecked(!taskChecked)}
+            onChange={() => setTaskChecked(!taskChecked)}
             checked={taskChecked}
           />
           <input

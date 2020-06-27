@@ -28,7 +28,6 @@ export const FirstPage: React.FunctionComponent<Props> = ({
   const [currentDate, setDate] = useState(0);
   const [currentYear, setYear] = useState('');
   const [currentMonth, setMonth] = useState('');
-  const a = showDate;
 
   const multiple = changeDate * 86400000;
 

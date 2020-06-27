@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { bind } from '../../../utils/bind';
 import styles from './logout-page.module.css';
 import logoutIcon from '../../../assets/logout.svg';
-import logout from '../../../infrastructure/api-client';
+// import logout from '../../../infrastructure/api-client';
 
 const cx = bind(styles);
 
@@ -13,9 +13,8 @@ export const LogoutPage: React.FunctionComponent = () => {
   const handleLogout = async () => {
     sessionStorage.removeItem('username');
     sessionStorage.removeItem('userInfo');
-    console.log('servicios', logout);
 
-    logout.logout();
+    // logout.logout();
     history.push('/login');
   };
 
