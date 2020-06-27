@@ -32,3 +32,24 @@
 .hidden {
   display: none;
 }
+
+@media (max-width: 768px) {
+  .signup-page {
+    flex-direction: column;
+    padding: 1rem;
+    width: 90%;
+  }
+
+  .signup-title {
+    font-size: 2.2rem;
+  }
+
+  .signup-page > div {
+    padding: 0;
+  }
+
+  .btn,
+  .login-info a {
+    box-shadow: none;
+  }
+}

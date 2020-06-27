@@ -47,3 +47,41 @@
   left: 0;
   right: 0;
 }
+
+@media (max-width: 768px) {
+  .home {
+    flex-direction: column;
+    position: absolute;
+  }
+
+  .button-prev,
+  .button-next {
+    height: 30px;
+    width: 30px;
+  }
+
+  .button-prev img,
+  .button-next img {
+    width: 15px;
+  }
+
+  .buttons-group {
+    display: flex;
+    flex-direction: row;
+    top: 20px;
+    right: 20px;
+  }
+
+  .button-prev {
+    position: relative;
+    left: 0;
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+
+  .button-next {
+    position: relative;
+    margin-bottom: 20px;
+    margin-left: 20px;
+  }
+}

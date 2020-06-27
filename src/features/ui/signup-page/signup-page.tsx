@@ -64,6 +64,7 @@ export const SignUpPage: React.FunctionComponent = () => {
   return (
     <div className={cx('signup-page')}>
       <Page>
+        <h2 className={cx('signup-title')}>Crear cuenta</h2>
         <form onSubmit={handleSubmit}>
           <BaseInput
             required={true}

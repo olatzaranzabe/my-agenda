@@ -9,7 +9,7 @@ export const WelcomePage: React.FunctionComponent<{}> = () => {
     <Fragment>
       <div className={cx('welcome_wrapper')}>
         <div>
-          <h1>
+          <h1 className={cx('welcome_title')}>
             Bienvenido a tu <span className={cx('bold')}>agenda online</span>
           </h1>
           <p>

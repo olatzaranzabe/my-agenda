@@ -41,3 +41,17 @@ h1 {
   text-decoration: none;
   color: #41403e;
 }
+
+@media (max-width: 768px) {
+  .welcome_title {
+    font-size: 2.2rem;
+  }
+  .welcome_wrapper {
+    padding: 1rem;
+  }
+  .buttons-list {
+    flex-direction: column;
+    align-items: center;
+    width: 85%;
+  }
+}
