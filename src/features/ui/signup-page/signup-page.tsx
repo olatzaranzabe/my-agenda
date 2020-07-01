@@ -20,7 +20,7 @@ export const SignUpPage: React.FunctionComponent = () => {
   const [pasValue, setPasValue] = useState('');
   const [inputError, setInputError] = useState('');
   const history = useHistory();
-  const url = 'http://my-agenda-app.herokuapp.com/auth/signup';
+  const url = 'https://my-agenda-app.herokuapp.com/auth/signup';
 
   const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
